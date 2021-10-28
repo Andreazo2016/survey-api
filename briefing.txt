@@ -1,0 +1,35 @@
+users (survey creator)
+ - can create a account
+ - can create or delete a survey
+ - can list your surveys with its itens
+ - can update the survey name
+ - can add to each survey at most 10 itens
+ - can create or delete a item in the survey
+ - each item survey must have at leat a question and several answer
+ - can see how many users answer the questions
+
+
+users (regular survey)
+ - answer the survey
+ - when finished the survey receive an e-mail with survey answered
+ - can see all survey answer by himself and its answer
+
+
+ tecnologies
+  language:
+    - typescript
+  test library:
+    - unit test
+      - jest
+    - integration test
+      - postman
+  framework
+    - express
+  database
+    - postgres
+  
+
+project architecture
+links ler
+  - https://medium.com/@alameerashraf/nodejs-a-clean-architecture-931898b00d68 (https://github.com/AlameerAshraf/NodeJS-A-Clean-Archticture-NJCA)
+  - https://blog.logrocket.com/the-perfect-architecture-flow-for-your-next-node-js-project/
