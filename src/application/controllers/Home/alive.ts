@@ -1,4 +1,4 @@
-import { IBaseController } from "../../../interfaces/IBaseController";
+import { IBaseController } from "../../interfaces/IBaseController";
 
 class AliveController implements IBaseController {
   execute(request, response) {
