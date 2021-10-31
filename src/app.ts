@@ -1,7 +1,9 @@
 import expressLoader from './loaders/express';
 import HomeRoutes from './application/routes/home.routes'
+import UserRoutes from './application/routes/user.routes'
 
-const app = expressLoader([HomeRoutes])
+const routes = [...HomeRoutes, ...UserRoutes]
+const app = expressLoader([routes])
 
 
 
