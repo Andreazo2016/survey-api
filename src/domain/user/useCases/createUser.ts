@@ -1,5 +1,5 @@
-import { createUserRequestDTO } from "../dtos";
-import { IUserRepository } from "../repositories/IUserRepository";
+import { createUserRequestDTO } from "@/domain/user/dtos";
+import { IUserRepository } from "@/domain/user/repositories/IUserRepository";
 
 export class CreateUser {
 

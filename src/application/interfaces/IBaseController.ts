@@ -1,3 +1,5 @@
+import { HttpResponse } from "./HttpResponse";
+
 export interface IBaseController {
-  execute(request: any, response: any): any
+  execute(request: any): Promise<HttpResponse>
 }

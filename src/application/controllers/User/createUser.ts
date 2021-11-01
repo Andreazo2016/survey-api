@@ -1,18 +1,25 @@
-import { IBaseController } from "../../interfaces/IBaseController";
-import { UserFactory } from '../../../application/factories/UserFactory'
+import { IBaseController, HttpResponse, IValidation } from "@/application/interfaces";
+import { UserFactory } from '@/application/factories/UserFactory';
+import { serverError, noContent, badRequest } from '@/common/helpers/httpHelper'
 
 class CreateUserController implements IBaseController {
-  async execute(request: any, response: any) {
+
+  constructor(private validation: IValidation) { }
+  async execute(request: any): Promise<HttpResponse> {
     const createUserService = UserFactory.createUser()
-    const { name, email } = request.body
+    const { name, email } = request
     try {
+      const error = await this.validation.validate({ email, name })
+      if (error) {
+        return badRequest(error)
+      }
       await createUserService.execute({ name, email })
-      return response.status(201).send()
+      return noContent()
     } catch (error) {
       console.log(error)
-      return response.status(201).json({ message: 'Internal Server Error' })
+      return serverError(error)
     }
   }
 }
 
-export default new CreateUserController()
+export default new CreateUserController(UserFactory.createUserValidation())

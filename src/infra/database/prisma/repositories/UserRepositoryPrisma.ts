@@ -1,5 +1,5 @@
-import { createUserDTO, ListUserRequestDTO } from "../../../../domain/user/dtos";
-import { IUserRepository } from "../../../../domain/user/repositories/IUserRepository";
+import { createUserDTO, UserDTO } from "@/domain/user/dtos";
+import { IUserRepository } from "@/domain/user/repositories/IUserRepository";
 import { PrismaClient } from '@prisma/client'
 
 export class UserRepositoryPrisma implements IUserRepository {
@@ -17,7 +17,15 @@ export class UserRepositoryPrisma implements IUserRepository {
     })
   }
 
-  findAll(): Promise<ListUserRequestDTO[]> {
+  findAll(): Promise<UserDTO[]> {
     return this.prismaClient.users.findMany()
+  }
+
+  findByEmail(email: string): Promise<UserDTO> {
+    return this.prismaClient.users.findUnique({
+      where: {
+        email,
+      },
+    })
   }
 }

@@ -1,7 +1,7 @@
-import { IRoute } from '../interfaces/IRoutes'
-import createUserController from '../controllers/User/createUser'
-import listUserController from '../controllers/User/listUser'
-import { Method } from '../../common/enums/http-methods'
+import { IRoute } from '@/application/interfaces/IRoutes'
+import createUserController from '@/application/controllers/User/createUser'
+import listUserController from '@/application/controllers/User/listUser'
+import { Method } from '@/common/enums/http-methods'
 
 const routes: IRoute[] = [
   {

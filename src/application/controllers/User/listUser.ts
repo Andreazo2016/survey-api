@@ -1,15 +1,16 @@
-import { IBaseController } from "../../interfaces/IBaseController";
-import { UserFactory } from '../../../application/factories/UserFactory'
+import { IBaseController } from "@/application/interfaces/IBaseController";
+import { UserFactory } from '@/application/factories/UserFactory'
+import { ok, serverError } from '@/common/helpers/httpHelper'
 
 class ListUserController implements IBaseController {
-  async execute(request: any, response: any) {
+  async execute(request: any) {
     const ListUserService = UserFactory.listUser()
     try {
       const users = await ListUserService.execute()
-      return response.status(200).json(users)
+      return ok(users)
     } catch (error) {
       console.log(error)
-      return response.status(201).json({ message: 'Internal Server Error' })
+      return serverError(error)
     }
   }
 }

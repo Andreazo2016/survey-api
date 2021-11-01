@@ -1,5 +1,6 @@
 import express from 'express';
-import { IRoute } from '../application/interfaces/IRoutes'
+import { IRoute } from '@/application/interfaces/IRoutes'
+import { adaptRoute } from '@/infra/adapters/express-router';
 
 
 export default (routes: [IRoute[]]) => {
@@ -11,7 +12,7 @@ export default (routes: [IRoute[]]) => {
     app[route.method.toLocaleLowerCase()](
       route.path,
       middlewares,
-      route.controller.execute
+      adaptRoute(route.controller)
     )
   })
 
