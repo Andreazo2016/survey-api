@@ -9,8 +9,8 @@ export class UserRepositoryPrisma implements IUserRepository {
     this.prismaClient = new PrismaClient()
   }
 
-  async create({ name, email }: createUserDTO): Promise<void> {
-    await this.prismaClient.users.create({
+  async create({ name, email }: createUserDTO): Promise<UserDTO> {
+    return this.prismaClient.users.create({
       data: {
         name, email
       }
