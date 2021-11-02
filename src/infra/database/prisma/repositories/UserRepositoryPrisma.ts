@@ -28,4 +28,20 @@ export class UserRepositoryPrisma implements IUserRepository {
       },
     })
   }
+  findById(id: string): Promise<UserDTO> {
+    return this.prismaClient.users.findUnique({
+      where: {
+        id,
+      },
+    })
+  }
+
+  delete(id: string): Promise<void> {
+    return this.prismaClient.users.delete({
+      where: {
+        id,
+      }
+    })
+  }
+
 }

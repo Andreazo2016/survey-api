@@ -1,4 +1,4 @@
 export interface createUserRequestDTO {
-  name: String;
-  email: String;
+  name: string;
+  email: string;
 }

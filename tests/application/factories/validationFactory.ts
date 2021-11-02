@@ -1,6 +1,5 @@
-import { ValidationComposite, RequiredFieldValidation, EmailValidation, DuplicatedEmailValidation } from '@/application/validators'
+import { ValidationComposite, RequiredFieldValidation, EmailValidation, DuplicatedEmailValidation, UuidValidation, UserNotFoundValidation } from '@/application/validators'
 import { IValidation } from '@/application/interfaces/IValidation'
-import { FakeUserRepository } from '@/tests/domain/user/fakeRepository/fakeUserRepository'
 import { IUserRepository } from '@/domain/user/repositories/IUserRepository'
 
 export class ValidationFactory {
@@ -12,6 +11,18 @@ export class ValidationFactory {
   static emailValidation = (): ValidationComposite => {
     const validations: IValidation[] = []
     validations.push(new EmailValidation('email'))
+    return new ValidationComposite(validations)
+  }
+
+  static uuidValidation = (): ValidationComposite => {
+    const validations: IValidation[] = []
+    validations.push(new UuidValidation('id'))
+    return new ValidationComposite(validations)
+  }
+
+  static userNotFoundValidation = (userRepository: IUserRepository): ValidationComposite => {
+    const validations: IValidation[] = []
+    validations.push(new UserNotFoundValidation('id', userRepository))
     return new ValidationComposite(validations)
   }
 

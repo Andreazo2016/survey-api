@@ -28,6 +28,4 @@ describe('EmailValidation', () => {
 
   })
 
-
-
 })

@@ -1,5 +1,5 @@
 import { IBaseController, HttpResponse, IValidation } from "@/application/interfaces";
-import { UserFactory } from '@/application/factories/UserFactory';
+import { ValidationFactory, UserFactory } from '@/application/factories';
 import { serverError, noContent, badRequest } from '@/common/helpers/httpHelper'
 
 class CreateUserController implements IBaseController {
@@ -22,4 +22,4 @@ class CreateUserController implements IBaseController {
   }
 }
 
-export default new CreateUserController(UserFactory.createUserValidation())
+export default new CreateUserController(ValidationFactory.createUserValidation())

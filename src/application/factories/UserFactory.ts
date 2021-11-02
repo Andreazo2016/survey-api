@@ -1,21 +1,14 @@
-import { CreateUser, ListUser } from "@/domain/user/useCases";
-import { ValidationComposite, RequiredFieldValidation, EmailValidation, DuplicatedEmailValidation } from '@/application/validators'
-import { IValidation } from '@/application/interfaces/IValidation'
-import { UserRepositoryPrisma } from '@/infra/database/prisma/repositories/UserRepositoryPrisma'
+import { CreateUser, ListUser, DeleteUser } from "@/domain/user/useCases";
+import { UserRepositoryFactory } from './UserRepositoryFactory';
+
 export class UserFactory {
   static createUser(): CreateUser {
-    return new CreateUser(new UserRepositoryPrisma())
+    return new CreateUser(UserRepositoryFactory.getInstance())
   }
   static listUser(): ListUser {
-    return new ListUser(new UserRepositoryPrisma())
+    return new ListUser(UserRepositoryFactory.getInstance())
   }
-  static createUserValidation = (): ValidationComposite => {
-    const validations: IValidation[] = []
-    validations.push(new RequiredFieldValidation('name'))
-    validations.push(new RequiredFieldValidation('email'))
-    validations.push(new EmailValidation('email'))
-    validations.push(new DuplicatedEmailValidation('email', new UserRepositoryPrisma()))
-    return new ValidationComposite(validations)
+  static deleteUser(): DeleteUser {
+    return new DeleteUser(UserRepositoryFactory.getInstance())
   }
-
 }

@@ -18,4 +18,14 @@ export class FakeUserRepository implements IUserRepository {
   async findByEmail(email: string): Promise<UserDTO | null> {
     return this.users.find(user => user.email === email)
   }
+  async findById(id: string): Promise<UserDTO | null> {
+    return this.users.find(user => user.id === id)
+  }
+
+  async delete(id: string): Promise<void> {
+    const userFoundIndex = this.users.findIndex(user => user.id === id)
+    if (userFoundIndex) {
+      this.users.splice(0, userFoundIndex)
+    }
+  }
 }
