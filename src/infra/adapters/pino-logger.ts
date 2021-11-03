@@ -1,11 +1,12 @@
 import pino from 'pino';
 import { ILogger, LogData } from '@/application/interfaces';
+import config from '@/application/config/config'
 
 export class PinoLogger implements ILogger {
   private pinoLogger;
   constructor() {
     this.pinoLogger = pino({
-      level: 'debug',
+      level: config.LOG_LEVEL,
     });
   }
 

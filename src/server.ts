@@ -1,5 +1,7 @@
-import app from './app'
-import { AppLoggerFactory } from '@/application/factories'
+import dotenv from 'dotenv';
+dotenv.config()
+import app from './app';
+import { AppLoggerFactory } from '@/application/factories';
 
 const appLogger = AppLoggerFactory.getInstance();
 
