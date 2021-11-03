@@ -1,12 +1,12 @@
 import { IUserRepository } from "@/domain/user/repositories/IUserRepository";
 import { UserRepositoryPrisma } from '@/infra/database/prisma/repositories/UserRepositoryPrisma'
 export class UserRepositoryFactory {
-  static userRepositoryPrisma: UserRepositoryPrisma = null
+  static userRepository: IUserRepository = null
   static getInstance(): IUserRepository {
-    if (UserRepositoryFactory.userRepositoryPrisma) {
-      return UserRepositoryFactory.userRepositoryPrisma
+    if (!UserRepositoryFactory.userRepository) {
+      UserRepositoryFactory.userRepository = new UserRepositoryPrisma()
+      return UserRepositoryFactory.userRepository
     }
-    UserRepositoryFactory.userRepositoryPrisma = new UserRepositoryPrisma()
-    return UserRepositoryFactory.userRepositoryPrisma
+    return UserRepositoryFactory.userRepository
   }
 }
