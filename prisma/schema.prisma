@@ -11,7 +11,15 @@ datasource db {
 }
 
 model Users {
-  id    String @id @default(uuid())
-  name  String
-  email String @unique
+  id     String   @id @default(uuid())
+  name   String
+  email  String   @unique
+  Survey Survey[] @relation("userCreator")
+}
+
+model Survey {
+  id              String @id @default(uuid())
+  name            String
+  userCreator     Users  @relation(name: "userCreator", fields: [user_creator_id], references: [id])
+  user_creator_id String
 }
