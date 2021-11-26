@@ -1,5 +1,5 @@
-import { CreateSurvey } from "@/domain/survey/dtos";
+import { CreateSurveyDTO, SurveyDTO } from "@/domain/survey/dtos";
 
 export interface ISurveyRepository {
-  create(user: CreateSurvey): Promise<void>
+  create(survey: CreateSurveyDTO): Promise<SurveyDTO>
 }

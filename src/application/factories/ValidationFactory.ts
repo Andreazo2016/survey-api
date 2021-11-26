@@ -13,6 +13,13 @@ export class ValidationFactory {
     return new ValidationComposite(validations)
   }
 
+  static createSurveyValidation = (): ValidationComposite => {
+    const validations: IValidation[] = []
+    validations.push(new RequiredFieldValidation('name'))
+    validations.push(new RequiredFieldValidation('user_creator_id'))
+    return new ValidationComposite(validations)
+  }
+
   static deleteUserValidation = (): ValidationComposite => {
     const validations: IValidation[] = []
     validations.push(new UuidValidation('id'))
